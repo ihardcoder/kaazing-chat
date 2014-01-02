@@ -10,11 +10,9 @@ A simple JavaScript client, the server is based on Kaazing's echo service.
 
     <type>echo</type>
    
-
     <realm-name>demo</realm-name>
-
  
-      <cross-site-constraint>
+    <cross-site-constraint>
       <allow-origin>http://${gateway.hostname}:${gateway.extras.port}</allow-origin>
     </cross-site-constraint>
   </service>
