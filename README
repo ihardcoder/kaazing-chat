@@ -1,4 +1,4 @@
-A simple JavaScript client, the server is based on Kaazing's echo service.
+A simple JavaScript client, the server is constructed by NodeJS, imformations are transported with WebScocket protocol through Kaazing Gateway.
 
 
 1. put all files into GATEWAY_HOME\web\extras\samples\html5-javascript\demo-kaazing
@@ -7,8 +7,8 @@ A simple JavaScript client, the server is based on Kaazing's echo service.
 
   <service>
     <accept>ws://${gateway.hostname}:${gateway.extras.port}/hello</accept>
-
-    <type>echo</type>
+    <connect>ws://${gateway.hostname}:8888/</connect>
+    <type>proxy</type>
    
     <realm-name>demo</realm-name>
  
@@ -17,8 +17,10 @@ A simple JavaScript client, the server is based on Kaazing's echo service.
     </cross-site-constraint>
   </service>
 
-3. start up Kaazing Gateway
+3. run: npm install ws 
 
-4. open your browser and visit http://localhost:8002/samples/html5-javascript/demo-kaazing/, the port "8002" could be set in GATEWAY_HOME\conf\gateway-config.xml by yourself
+4. start up Kaazing Gateway
 
-5. enjoy
+5. open your browser and visit http://localhost:8002/samples/html5-javascript/demo-kaazing/, the port "8002" could be set in GATEWAY_HOME\conf\gateway-config.xml by yourself
+
+6. enjoy
