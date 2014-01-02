@@ -19,8 +19,10 @@ A simple JavaScript client, the server is constructed by NodeJS, imformations ar
 
 3. run: npm install ws 
 
-4. start up Kaazing Gateway
+4. run: node server
 
-5. open your browser and visit http://localhost:8002/samples/html5-javascript/demo-kaazing/, the port "8002" could be set in GATEWAY_HOME\conf\gateway-config.xml by yourself
+5. start up Kaazing Gateway
 
-6. enjoy
+6. open your browser and visit http://localhost:8002/samples/html5-javascript/demo-kaazing/, the port "8002" could be set in GATEWAY_HOME\conf\gateway-config.xml by yourself
+
+7. enjoy
