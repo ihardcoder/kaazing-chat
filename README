@@ -6,7 +6,7 @@ A simple JavaScript client, the server is constructed by NodeJS, imformations ar
 2. open GATEWAY_HOME\conf\gateway-config.xml, and copy follow codes into it 
 
   <service>
-    <accept>ws://${gateway.hostname}:${gateway.extras.port}/hello</accept>
+    <accept>ws://${gateway.hostname}:${gateway.extras.port}/conn</accept>
     <connect>ws://${gateway.hostname}:8888/</connect>
     <type>proxy</type>
    
