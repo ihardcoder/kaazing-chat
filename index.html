@@ -3,6 +3,7 @@
 <head>
  <meta charset="utf-8" />
  <script language="javascript" type="text/javascript" src="public/javascripts/jquery.min.js"></script>
+ <script language="javascript" type="text/javascript" src="public/javascripts/WebSocket.js"></script>
 <title>WebSocket Test</title>
 
 </head>
@@ -27,6 +28,10 @@
   var input_area = $('#input_txt');
   var output = $('#output');
 
+  var myName = "";
+
+  var firstconnect = true;
+
   connect_bt.click(connect);
   disconnect_bt.click(disconnect);
   send_bt.click(sendMsg);
@@ -49,34 +54,32 @@
       doSend:function(msg){
         this.ws.send = function(evt) {
           console.log(evt.timeStamp)
-          // showStatus()
         };
       },
  
  
       onOpen:function(){
         this.ws.onopen = function(evt) { 
-          showStatus('CONNECTED:' + evt.type);
-          // console.log('CONNECTED:' + evt.type); 
-          // WebSocketDemo.ws.send('html5 hacks');
+          if(firstconnect){
+            showMsg('第一次登录，请输入昵称');
+            // firstconnect = false;
+          }else{
+            showMsg("进入聊天室");
+          }
         };
       },
  
  
       onClose:function(){
         this.ws.onclose = function(evt) {
-          // console.log('CLOSED:' + ':' + evt.type);
-          showStatus('CLOSED:' + evt.type);
+          showMsg('退出聊天室');
         };
       },
  
  
       onMessage:function(msg){
         this.ws.onmessage = function(evt) { 
-          showStatus('RESPONSE:' + evt.data);
-          // console.log('RESPONSE:' + ':' + evt.data);
-
-          // WebSocketDemo.ws.close();
+          showMsg(evt.data);
         };
       }
     }
@@ -85,7 +88,7 @@
 
 
   function connect(){
-    WebSocketDemo.init("ws://localhost:8002/hello");
+    WebSocketDemo.init("ws://localhost:8002/conn");
   }
 
   function disconnect(){
@@ -100,13 +103,16 @@
 
     input_area.val("") ;
     WebSocketDemo.ws.send(msg);
+    if(firstconnect){
+      myName = msg;
+      firstconnect = false;
+    }
   }
 
-  function showStatus(status){
+  function showMsg(status){
     var p = document.createElement('p');
     p.innerHTML = status ? status : "未连接";
     output.prepend(p);
-    // status_area.innerHTML = status ? status : "未连接";
   }
  
  </script>
